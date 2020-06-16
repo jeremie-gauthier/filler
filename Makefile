@@ -6,7 +6,7 @@
 #    By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/13 20:07:20 by jergauth          #+#    #+#              #
-#    Updated: 2020/06/13 20:11:12 by jergauth         ###   ########.fr        #
+#    Updated: 2020/06/16 13:11:00 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,12 @@ OBJS_DIRNAME= .objs
 
 ## COMMON SOURCES
 SRCS_DIR= ./srcs
-SRCS=	main.c
+SRCS=	mem_clear.c\
+			mem_init.c\
+			main.c\
+			read_map.c\
+			read_piece.c\
+			play_piece.c
 
 ## COMMON OBJS
 OBJS= $(SRCS:.c=.o)
