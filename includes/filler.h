@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:18:16 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/20 12:04:46 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/20 19:06:58 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_queue
 int read_map(char *line, t_filler *filler);
 int read_piece(char *line, t_filler *filler);
 int play_piece(t_filler *filler);
+int heatmap(t_filler *filler);
 
 /*
 **  mem_clear
@@ -89,6 +90,7 @@ void split_clear(t_split *split);
 void map_clear(t_map *map);
 void piece_clear(t_piece *piece);
 void player_clear(t_player *player);
+void queue_clear(t_queue *queue);
 
 /*
 **  mem_init
@@ -96,5 +98,7 @@ void player_clear(t_player *player);
 
 int filler_init(t_filler *filler);
 int data_init(char ***data, size_t size);
+int queue_init(t_queue *queue, size_t size);
+int heatmap_init(unsigned int ***heatmap, size_t height, size_t width);
 
 #endif
