@@ -16,6 +16,10 @@
 #include "libft.h"
 
 #define WHITESPACES " \t\n\r\v\f"
+#define PLAYER_CASE 0xFFFFFFFF
+#define FREE_CASE 0x0
+#define EMPTY_CASE '.'
+#define MARKED 0x1
 
 typedef struct s_coord
 {
