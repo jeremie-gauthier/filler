@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:18:16 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/16 15:25:58 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/20 12:04:46 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,15 @@ int play_piece(t_filler *filler);
 
 void filler_clear(t_filler *filler);
 void split_clear(t_split *split);
+void map_clear(t_map *map);
+void piece_clear(t_piece *piece);
+void player_clear(t_player *player);
 
 /*
 **  mem_init
 */
 
-int map_init(t_filler *filler);
 int filler_init(t_filler *filler);
+int data_init(char ***data, size_t size);
 
 #endif
