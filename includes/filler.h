@@ -64,6 +64,18 @@ typedef struct s_split
   size_t len;
 } t_split;
 
+typedef struct s_queue
+{
+  t_coord *data;
+  char *marked;
+  size_t front;
+  size_t rear;
+} t_queue;
+
+/*
+**  core
+*/
+
 int read_map(char *line, t_filler *filler);
 int read_piece(char *line, t_filler *filler);
 int play_piece(t_filler *filler);
