@@ -32,7 +32,7 @@ typedef struct s_map
   size_t width;
   size_t height;
   char **data;
-  char **heatmap;
+  unsigned int **heatmap;
 } t_map;
 
 typedef struct s_player
