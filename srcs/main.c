@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:12:32 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/16 15:21:36 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/20 11:54:30 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,8 @@ static int read_core(t_filler *filler)
 {
   char *line;
 
-  while (get_next_line(0, &line) > -1)
+  while (get_next_line(0, &line) > 0)
   {
-    if (!line)
-      continue;
     ft_dprintf(2, ":: %s\n", line);
     if (ft_strncmp(line, "Plateau", 7) == 0)
     {
@@ -59,7 +57,9 @@ static int read_core(t_filler *filler)
       if (play_piece(filler) < 0)
         return (-1);
     }
+    ft_strdel(&line);
   }
+  ft_strdel(&line);
   return (0);
 }
 
@@ -79,5 +79,6 @@ int main(void)
     filler_clear(&filler);
     return (1);
   }
+  filler_clear(&filler);
   return (0);
 }
