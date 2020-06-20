@@ -34,6 +34,7 @@ typedef struct s_map
 typedef struct s_player
 {
   t_coord *last_move;
+  size_t len;
   char shape;
 } t_player;
 
