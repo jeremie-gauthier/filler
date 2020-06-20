@@ -6,7 +6,7 @@
 #    By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/13 20:07:20 by jergauth          #+#    #+#              #
-#    Updated: 2020/06/16 13:11:00 by jergauth         ###   ########.fr        #
+#    Updated: 2020/06/20 17:24:41 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ OBJS_DIRNAME= .objs
 SRCS_DIR= ./srcs
 SRCS=	mem_clear.c\
 			mem_init.c\
+			heatmap.c\
 			main.c\
 			read_map.c\
 			read_piece.c\
