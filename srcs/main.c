@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:12:32 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/20 11:54:30 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/20 17:23:18 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,28 @@ static int read_core(t_filler *filler)
     if (ft_strncmp(line, "Plateau", 7) == 0)
     {
       if (read_map(line, filler) < 0)
+      {
+        ft_strdel(&line);
         return (-1);
+      }
     }
     else if (ft_strncmp(line, "Piece", 5) == 0)
     {
       if (read_piece(line, filler) < 0)
+      {
+        ft_strdel(&line);
         return (-1);
+      }
+      if (heatmap(filler) < 0)
+      {
+        ft_strdel(&line);
+        return (-1);
+      }
       if (play_piece(filler) < 0)
+      {
+        ft_strdel(&line);
         return (-1);
+      }
     }
     ft_strdel(&line);
   }
