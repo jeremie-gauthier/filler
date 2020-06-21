@@ -23,8 +23,9 @@
 
 typedef struct s_coord
 {
-  size_t x;
-  size_t y;
+  int x;
+  int y;
+  size_t dist;
 } t_coord;
 
 typedef struct s_map
