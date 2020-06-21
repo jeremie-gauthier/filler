@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 13:07:51 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/20 18:42:29 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/20 21:58:38 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void player_clear(t_player *player)
 void queue_clear(t_queue *queue)
 {
   ft_memdel((void **)&queue->data);
-  ft_strdel(&queue->marked);
 }
 
 void filler_clear(t_filler *filler)
