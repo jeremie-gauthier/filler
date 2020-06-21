@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 12:19:22 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/20 15:12:10 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/20 21:09:03 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int read_piece_header(char *line, t_filler *filler)
 static int read_piece_body(t_filler *filler)
 {
   char *line;
-  size_t i;
+  int i;
 
   i = 0;
   line = NULL;

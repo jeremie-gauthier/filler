@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 12:17:50 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/20 15:12:03 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/20 21:08:54 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int read_map_header(char *line, t_filler *filler)
 static int read_map_body(t_filler *filler)
 {
   t_split data;
-  size_t i;
+  int i;
 
   i = 0;
   ft_bzero(&data, sizeof(t_split));
