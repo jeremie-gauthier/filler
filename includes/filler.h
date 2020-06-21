@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:18:16 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/21 11:01:02 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/21 12:08:14 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,11 @@ int read_map(char *line, t_filler *filler);
 int read_piece(char *line, t_filler *filler);
 int play_piece(t_filler *filler);
 int heatmap(t_filler *filler);
+
+/*
+**  queue
+*/
+void enqueue_procedure(t_coord coord, t_queue *queue, t_filler *filler);
 
 /*
 **  mem_clear
