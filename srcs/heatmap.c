@@ -6,73 +6,119 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 15:12:59 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/20 19:06:31 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/21 11:02:01 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static int is_empty_case(t_filler *filler, t_coord coord)
+// DEBUG
+void print_heatmap(t_filler *filler)
 {
-  return filler->map->data[coord.y][coord.x] == EMPTY_CASE;
+  int h, w;
+
+  h = 0;
+  while (h < filler->map->height)
+  {
+    w = 0;
+    while (w < filler->map->width)
+    {
+      if (filler->map->heatmap[h][w] == 4294967295)
+        ft_dprintf(2, "{green}%2lu{reset} ", 0);
+      else
+        ft_dprintf(2, "%2lu ", filler->map->heatmap[h][w]);
+      w++;
+    }
+    ft_dprintf(2, "\n");
+    h++;
+  }
+  ft_dprintf(2, "\n\n");
 }
 
-static int is_ennemy(const char pawn, const char ennemy_pawn)
+int is_in_queue(t_coord coord, t_queue *queue)
 {
-  return (pawn == ennemy_pawn || pawn == (ennemy_pawn + 32));
+  size_t i;
+
+  i = queue->front;
+  while (i < queue->rear)
+  {
+    if (queue->data[i].x == coord.x && queue->data[i].y == coord.y)
+      return (1);
+    i++;
+  }
+  return (0);
+}
+
+static int is_empty_case(t_filler *filler, t_coord coord)
+{
+  return filler->map->data[coord.y][coord.x] == EMPTY_CASE && filler->map->heatmap[coord.y][coord.x] == COLD_CASE;
+}
+
+void enqueu_top_of(t_coord coord, t_queue *queue, t_filler *filler)
+{
+  coord.y--;
+  if (coord.y >= 0 && is_empty_case(filler, coord) && !is_in_queue(coord, queue))
+  {
+    queue->data[queue->rear++] = coord;
+    filler->map->heatmap[coord.y][coord.x] = coord.dist;
+  }
+}
+
+void enqueu_right_of(t_coord coord, t_queue *queue, t_filler *filler)
+{
+  coord.x++;
+  if (coord.x < filler->map->width && is_empty_case(filler, coord) && !is_in_queue(coord, queue))
+  {
+    queue->data[queue->rear++] = coord;
+    filler->map->heatmap[coord.y][coord.x] = coord.dist;
+  }
+}
+
+void enqueu_bottom_of(t_coord coord, t_queue *queue, t_filler *filler)
+{
+  coord.y++;
+  if (coord.y < filler->map->height && is_empty_case(filler, coord) && !is_in_queue(coord, queue))
+  {
+    queue->data[queue->rear++] = coord;
+    filler->map->heatmap[coord.y][coord.x] = coord.dist;
+  }
+}
+
+void enqueu_left_of(t_coord coord, t_queue *queue, t_filler *filler)
+{
+  coord.x--;
+  if (coord.x >= 0 && is_empty_case(filler, coord) && !is_in_queue(coord, queue))
+  {
+    queue->data[queue->rear++] = coord;
+    filler->map->heatmap[coord.y][coord.x] = coord.dist;
+  }
+}
+
+void enqueue_procedure(t_coord coord, t_queue *queue, t_filler *filler)
+{
+  coord.dist++;
+  enqueu_top_of(coord, queue, filler);
+  enqueu_right_of(coord, queue, filler);
+  enqueu_bottom_of(coord, queue, filler);
+  enqueu_left_of(coord, queue, filler);
 }
 
 static void enqueu_if_opponent_case(t_queue *queue, t_filler *filler, t_coord coord)
 {
-  size_t idx_marked;
-  t_coord coord_marked;
+  char pawn;
+  char ennemy_pawn;
 
-  if (is_ennemy(filler->opponent->shape, filler->map->data[coord.y][coord.x]))
-  {
-    ft_dprintf(2, "!!! DETECT ENNEMY AT %lu %lu\n", coord.y, coord.x);
-    // TOP
-    coord_marked = coord;
-    coord_marked.y--;
-    idx_marked = (coord.y - 1) * filler->map->height + coord.x;
-    if (coord.y - 1 > 0 && is_empty_case(filler, coord_marked) && !queue->marked[idx_marked])
-    {
-      queue->data[queue->rear++] = coord_marked;
-      queue->marked[idx_marked] = MARKED;
-    }
-    // RIGHT
-    coord_marked = coord;
-    coord_marked.x++;
-    idx_marked = coord.y * filler->map->height + coord.x + 1;
-    if (coord.x + 1 < filler->map->width && is_empty_case(filler, coord_marked) && !queue->marked[idx_marked])
-    {
-      queue->data[queue->rear++] = coord_marked;
-      queue->marked[idx_marked] = MARKED;
-    }
-    // BOTTOM
-    coord_marked = coord;
-    coord_marked.y++;
-    idx_marked = (coord.y + 1) * filler->map->height + coord.x;
-    if (coord.y + 1 < filler->map->height && is_empty_case(filler, coord_marked) && !queue->marked[idx_marked])
-    {
-      queue->data[queue->rear++] = coord_marked;
-      queue->marked[idx_marked] = MARKED;
-    }
-    // LEFT
-    coord_marked = coord;
-    coord_marked.x--;
-    idx_marked = (coord.y + 1) * filler->map->height + coord.x;
-    if (coord.x > 0 && is_empty_case(filler, coord_marked) && !queue->marked[idx_marked])
-    {
-      queue->data[queue->rear++] = coord_marked;
-      queue->marked[idx_marked] = MARKED;
-    }
-  }
+  pawn = filler->map->data[coord.y][coord.x];
+  ennemy_pawn = filler->opponent->shape;
+  if (pawn == ennemy_pawn || pawn == (ennemy_pawn + 32))
+    enqueue_procedure(coord, queue, filler);
 }
 
 static int heatmap_setup(t_filler *filler, t_queue *queue)
 {
   t_coord coord;
 
+  coord.dist = INITIAL_DISTANCE;
   coord.y = 0;
   while (coord.y < filler->map->height)
   {
@@ -91,6 +137,17 @@ static int heatmap_setup(t_filler *filler, t_queue *queue)
   return (0);
 }
 
+void heatmap_spread(t_filler *filler, t_queue *queue)
+{
+  while (queue->front < queue->rear)
+  {
+    enqueue_procedure(queue->data[queue->front], queue, filler);
+    // print_heatmap(filler);
+    queue->front++;
+    // ft_dprintf(2, "{cyan}%lu/%lu{reset}\n", queue->front, queue->rear);
+  }
+}
+
 int heatmap(t_filler *filler)
 {
   t_queue queue;
@@ -104,7 +161,8 @@ int heatmap(t_filler *filler)
     queue_clear(&queue);
     return (-1);
   }
-  ft_dprintf(2, "%lu %lu\n", queue.data[0].y, queue.data[0].x);
+  heatmap_spread(filler, &queue);
+  print_heatmap(filler);
   queue_clear(&queue);
   return (0);
 }
