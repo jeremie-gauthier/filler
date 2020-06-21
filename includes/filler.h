@@ -30,8 +30,8 @@ typedef struct s_coord
 
 typedef struct s_map
 {
-  size_t width;
-  size_t height;
+  int width;
+  int height;
   char **data;
   unsigned int **heatmap;
 } t_map;
@@ -45,8 +45,8 @@ typedef struct s_player
 
 typedef struct s_piece
 {
-  size_t width;
-  size_t height;
+  int width;
+  int height;
   char **data;
 } t_piece;
 
