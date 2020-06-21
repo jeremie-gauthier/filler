@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:18:16 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/20 19:06:58 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/21 11:01:02 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 #define WHITESPACES " \t\n\r\v\f"
 #define PLAYER_CASE 0xFFFFFFFF
-#define FREE_CASE 0x0
 #define EMPTY_CASE '.'
-#define MARKED 0x1
+#define COLD_CASE 0x0
+#define INITIAL_DISTANCE 0
 
 typedef struct s_coord
 {
