@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 13:10:21 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/20 18:53:25 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/21 11:00:44 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,6 @@ int queue_init(t_queue *queue, size_t size)
 {
   if (!(queue->data = (t_coord *)ft_memalloc(size * sizeof(t_coord))))
     return (-1);
-  if (!(queue->marked = (char *)ft_memalloc(size * sizeof(char))))
-  {
-    ft_memdel((void **)&queue->data);
-    return (-1);
-  }
   queue->front = 0;
   queue->rear = 0;
   return (0);
