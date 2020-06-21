@@ -68,7 +68,6 @@ typedef struct s_split
 typedef struct s_queue
 {
   t_coord *data;
-  char *marked;
   size_t front;
   size_t rear;
 } t_queue;
