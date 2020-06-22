@@ -36,10 +36,18 @@ typedef struct s_map
   unsigned int **heatmap;
 } t_map;
 
+typedef struct s_pawn
+{
+  t_coord coord;
+  unsigned int score;
+} t_pawn;
+
 typedef struct s_player
 {
-  t_coord *last_move;
-  size_t len;
+  t_pawn *pawns;
+  size_t len_pawns;
+  t_coord *last_move; //useless ?
+  size_t len;         //useless ?
   char shape;
 } t_player;
 
@@ -110,6 +118,7 @@ void queue_clear(t_queue *queue);
 */
 
 int filler_init(t_filler *filler);
+int pawns_init(t_pawn **pawns, size_t size);
 int data_init(char ***data, size_t size);
 int queue_init(t_queue *queue, size_t size);
 int heatmap_init(unsigned int ***heatmap, size_t height, size_t width);
