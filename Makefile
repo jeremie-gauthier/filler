@@ -6,7 +6,7 @@
 #    By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/13 20:07:20 by jergauth          #+#    #+#              #
-#    Updated: 2020/06/21 12:28:40 by jergauth         ###   ########.fr        #
+#    Updated: 2020/06/22 12:55:55 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS=	mem_clear.c\
 			main.c\
 			read_map.c\
 			read_piece.c\
+			pawns.c\
 			play_piece.c
 
 ## COMMON OBJS
