@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 15:12:59 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/21 12:29:02 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/22 21:15:32 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,11 @@ void print_heatmap(t_filler *filler)
   ft_dprintf(2, "\n\n");
 }
 
-static void enqueu_if_opponent_case(t_queue *queue, t_filler *filler, t_coord coord)
+static void enqueu_if_opponent_case(t_queue *queue, t_filler *filler,
+                                    t_coord coord)
 {
-  char pawn;
-  char ennemy_pawn;
-
-  pawn = filler->map->data[coord.y][coord.x];
-  ennemy_pawn = filler->opponent->shape;
-  if (pawn == ennemy_pawn || pawn == (ennemy_pawn + 32))
+  if (is_player_pawn(filler->map->data[coord.y][coord.x],
+                     filler->opponent->shape))
     enqueue_procedure(coord, queue, filler);
 }
 

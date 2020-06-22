@@ -6,11 +6,16 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 12:51:20 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/22 13:44:44 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/22 21:16:23 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+int is_player_pawn(const char pawn, const char player_pawn)
+{
+  return (pawn == player_pawn || pawn == (player_pawn + 32));
+}
 
 static unsigned int find_min_dist(t_filler *filler, t_coord coord)
 {
@@ -57,8 +62,8 @@ void pawns_counting(t_filler *filler)
     coord.x = 0;
     while (coord.x < filler->map->width)
     {
-      if (filler->map->data[coord.y][coord.x] == filler->me->shape ||
-          filler->map->data[coord.y][coord.x] == (filler->me->shape + 32))
+      if (is_player_pawn(filler->map->data[coord.y][coord.x],
+                         filler->me->shape))
         idx += pawns_add(filler, coord, idx);
       coord.x++;
     }
