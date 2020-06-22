@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 13:10:21 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/21 11:00:44 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/22 12:02:24 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,16 @@ int data_init(char ***data, size_t size)
 {
   if (!(*data = (char **)ft_memalloc((size + 1) * sizeof(char *))))
     return (-1);
+  return (0);
+}
+
+int pawns_init(t_pawn **pawns, size_t size)
+{
+  if (*pawns == NULL)
+  {
+    if (!(*pawns = (t_pawn *)ft_memalloc(size * sizeof(t_pawn))))
+      return (-1);
+  }
   return (0);
 }
 
