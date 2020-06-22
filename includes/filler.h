@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:18:16 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/22 10:50:15 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/22 13:29:46 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,12 @@ int heatmap(t_filler *filler);
 **  queue
 */
 void enqueue_procedure(t_coord coord, t_queue *queue, t_filler *filler);
+
+/*
+**  pawns
+*/
+void pawns_counting(t_filler *filler);
+size_t find_pawn_with_min_dist(t_pawn *pawns, size_t len, unsigned int ignore_le);
 
 /*
 **  mem_clear
