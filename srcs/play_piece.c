@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 12:20:03 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/22 13:44:50 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/22 20:29:45 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ int play_piece(t_filler *filler)
              filler->me->pawns[idx_pawn].coord.y,
              filler->me->pawns[idx_pawn].coord.x,
              filler->me->pawns[idx_pawn].coord.dist);
+  // int res = test_piece(filler->me->pawns[idx_pawn].coord, filler);
+  int res = test_piece_moving_around(filler->me->pawns[idx_pawn], filler);
+  ft_dprintf(2, "PLACEABLE => %i\n", res);
   player_clear(filler->me);
   return (0);
 }

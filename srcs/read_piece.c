@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 12:19:22 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/22 11:30:36 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/22 19:25:57 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,22 @@ static void set_offset(t_piece *piece)
   }
 }
 
+static void set_true_dims(t_piece *piece)
+{
+  int idx;
+
+  idx = 0;
+  while ((idx + piece->offset_height) < piece->height &&
+         !is_empty_row(piece->data[idx + piece->offset_height]))
+    idx++;
+  piece->true_height = idx;
+  idx = 0;
+  while ((idx + piece->offset_width) < piece->width &&
+         !is_empty_col(piece->data, idx + piece->offset_width))
+    idx++;
+  piece->true_width = idx;
+}
+
 int read_piece(char *line, t_filler *filler)
 {
   if (read_piece_header(line, filler->piece) < 0)
@@ -83,5 +99,8 @@ int read_piece(char *line, t_filler *filler)
   set_offset(filler->piece);
   ft_dprintf(2, "OFF Height: %i\nOFF Width: %i\n",
              filler->piece->offset_height, filler->piece->offset_width);
+  set_true_dims(filler->piece);
+  ft_dprintf(2, "TRUE Height: %i\nTRUE Width: %i\n",
+             filler->piece->true_height, filler->piece->true_width);
   return (0);
 }
