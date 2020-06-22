@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:18:16 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/22 20:31:01 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/22 21:25:02 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ typedef struct s_map
 
 typedef struct s_pawn
 {
+  // Si je veux tirer profit du `score`,
+  // il faut ajouter une autre struct coord
+  // correspondant au placement de la piece par rapport
+  // au pion situe en `coord`
+  // Ce sera une position abosule de la filler->map->data
   t_coord coord;
   unsigned int score;
 } t_pawn;
@@ -110,6 +115,7 @@ void enqueue_procedure(t_coord coord, t_queue *queue, t_filler *filler);
 */
 void pawns_counting(t_filler *filler);
 size_t find_pawn_with_min_dist(t_pawn *pawns, size_t len, unsigned int ignore_le);
+int is_player_pawn(const char pawn, const char player_pawn);
 
 /*
 **  mem_clear
