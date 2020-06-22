@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:18:16 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/21 12:08:14 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/22 10:50:15 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct s_piece
   int width;
   int height;
   char **data;
+  int offset_width;
+  int offset_height;
 } t_piece;
 
 typedef struct s_filler
