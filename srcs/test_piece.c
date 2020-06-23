@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 18:21:42 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/23 12:13:40 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/23 16:38:26 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ int test_piece(t_coord coord, t_filler *filler)
     while ((w + filler->piece->offset_width) < (filler->piece->offset_width + filler->piece->true_width))
     {
       if (is_player_pawn(filler->map->data[coord.y + h][coord.x + w],
+                         filler->opponent->shape))
+        return (0);
+      if (is_player_pawn(filler->map->data[coord.y + h][coord.x + w],
                          filler->me->shape) &&
           filler->piece->data[h + filler->piece->offset_height]
                              [w + filler->piece->offset_width] == '*')
@@ -61,11 +64,11 @@ int test_piece_moving_around(t_pawn *target, t_filler *filler)
 {
   t_coord coord;
 
-  // ft_dprintf(2, "TARGET: [%i, %i]\n", target.coord.y, target.coord.x);
+  // ft_dprintf(2, "TARGET: [%i, %i]\n", target->coord.y, target->coord.x);
   coord.y = 1;
   while (coord.y <= filler->piece->true_height)
   {
-    // ft_dprintf(2, "Is it to high ? %i < %i\n", (target.coord.y + filler->piece->true_height - coord.y), filler->map->height);
+    // ft_dprintf(2, "Is it to high ? %i < %i\n", (target->coord.y + filler->piece->true_height - coord.y), filler->map->height);
     if ((target->coord.y + filler->piece->true_height - coord.y) < filler->map->height &&
         (target->coord.y - coord.y + 1) >= 0)
     {
