@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 12:51:20 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/23 11:39:06 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/23 18:07:40 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,28 +72,26 @@ void pawns_counting(t_filler *filler)
   filler->me->len_pawns = idx;
 }
 
-size_t find_pawn_with_min_dist(t_pawn *pawns, size_t len, unsigned int ignore_lt)
+void pawns_sorting(t_pawn *pawns, size_t len)
 {
   size_t i;
-  unsigned int min;
-  size_t min_idx;
+  size_t j;
+  t_pawn tmp;
 
   i = 0;
-  min = PLAYER_CASE;
-  min_idx = PLAYER_CASE;
   while (i < len)
   {
-    if (pawns[i].coord.dist >= ignore_lt && !pawns[i].tested)
+    j = i + 1;
+    while (j < len)
     {
-      if (pawns[i].coord.dist == ignore_lt)
-        return i;
-      if (pawns[i].coord.dist < min)
+      if (pawns[j].coord.dist < pawns[i].coord.dist)
       {
-        min = pawns[i].coord.dist;
-        min_idx = i;
+        tmp = pawns[j];
+        pawns[j] = pawns[i];
+        pawns[i] = tmp;
       }
+      j++;
     }
     i++;
   }
-  return min_idx;
 }
