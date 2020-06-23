@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 12:19:22 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/22 19:25:57 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/23 16:25:52 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,24 +49,22 @@ static int read_piece_body(t_piece *piece)
 
 static void set_offset(t_piece *piece)
 {
-  int *offset_h;
-  int *offset_w;
   int row;
 
-  offset_h = &piece->offset_height;
-  offset_w = &piece->offset_width;
-  while (!ft_strchr(piece->data[*offset_h], '*'))
-    (*offset_h)++;
-  while (*offset_w < piece->width)
+  piece->offset_height = 0;
+  piece->offset_width = 0;
+  while (!ft_strchr(piece->data[piece->offset_height], '*'))
+    piece->offset_height++;
+  while (piece->offset_width < piece->width)
   {
     row = 0;
     while (row < piece->height)
     {
-      if (piece->data[row][*offset_w] == '*')
+      if (piece->data[row][piece->offset_width] == '*')
         return;
       row++;
     }
-    (*offset_w)++;
+    piece->offset_width++;
   }
 }
 
