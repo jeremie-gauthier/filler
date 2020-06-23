@@ -29,7 +29,7 @@ static unsigned int find_min_dist(t_filler *filler, t_coord coord)
   if (coord.x + 1 < filler->map->width && heatmap[coord.y][coord.x + 1] < min)
     min = heatmap[coord.y][coord.x + 1];
   if (coord.y + 1 < filler->map->height && heatmap[coord.y + 1][coord.x] < min)
-    min = heatmap[coord.y - 1][coord.x];
+    min = heatmap[coord.y + 1][coord.x];
   if (coord.x - 1 > 0 && heatmap[coord.y][coord.x - 1] < min)
     min = heatmap[coord.y][coord.x - 1];
   return min;
