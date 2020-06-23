@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 12:20:03 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/23 12:14:05 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/23 17:54:35 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,38 +30,19 @@ void print_pawns(t_player *me)
 
 static unsigned int select_piece_coords(t_filler *filler)
 {
-  size_t nb_visited;
-  unsigned int idx_pawn;
-  unsigned int ignore_lt;
+  size_t i;
   int placeable;
 
+  i = 0;
   placeable = 0;
-  ignore_lt = 0;
-  idx_pawn = 0;
-  nb_visited = 0;
-  while (!placeable && nb_visited < filler->me->len_pawns)
+  while (i < filler->me->len_pawns)
   {
-    idx_pawn = find_pawn_with_min_dist(&filler->me->pawns[idx_pawn],
-                                       filler->me->len_pawns, ignore_lt);
-    ignore_lt = filler->me->pawns[idx_pawn].coord.dist;
-    filler->me->pawns[idx_pawn].tested = true;
-    nb_visited++;
-    if (idx_pawn < filler->me->len_pawns)
-    {
-      ft_dprintf(2, "{green}PAWN >> %i %i %lu{reset}\n",
-                 filler->me->pawns[idx_pawn].coord.y,
-                 filler->me->pawns[idx_pawn].coord.x,
-                 filler->me->pawns[idx_pawn].coord.dist);
-      placeable = test_piece_moving_around(&filler->me->pawns[idx_pawn], filler);
-    }
-    else
-    {
-      idx_pawn = 0;
-      ignore_lt++;
-    }
+    placeable = test_piece_moving_around(&filler->me->pawns[i], filler);
+    if (placeable)
+      return (i);
+    i++;
   }
-  ft_dprintf(2, "PLACEABLE => %i\n", placeable);
-  return (placeable ? idx_pawn : ERROR_PAWN);
+  return (ERROR_PAWN);
 }
 
 int play_piece(t_filler *filler)
@@ -70,16 +51,25 @@ int play_piece(t_filler *filler)
 
   if (pawns_init(&filler->me->pawns, filler->map->height * filler->map->width) < 0)
     return (-1);
+  // ft_dprintf(2, "Pawns have been sorted !\n");
   pawns_counting(filler);
+  pawns_sorting(filler->me->pawns, filler->me->len_pawns);
   print_pawns(filler->me);
-  if ((idx_pawn = select_piece_coords(filler)) == ERROR_PAWN)
+  idx_pawn = select_piece_coords(filler);
+  if (idx_pawn == ERROR_PAWN)
   {
-    player_clear(filler->me);
-    return (-1);
+    ft_dprintf(2, "END WITHOUT SOLUTION\n");
+    ft_printf("0 0\n");
   }
-  ft_printf("%i %i\n",
-            filler->me->pawns[idx_pawn].best_spot.x - filler->piece->offset_width,
-            filler->me->pawns[idx_pawn].best_spot.y - filler->piece->offset_height);
+  else
+  {
+    ft_dprintf(2, "{yellow}%i %i{reset}\n",
+               filler->me->pawns[idx_pawn].best_spot.x - filler->piece->offset_width,
+               filler->me->pawns[idx_pawn].best_spot.y - filler->piece->offset_height);
+    ft_printf("%i %i\n",
+              filler->me->pawns[idx_pawn].best_spot.y - filler->piece->offset_height,
+              filler->me->pawns[idx_pawn].best_spot.x - filler->piece->offset_width);
+  }
   player_clear(filler->me);
   return (0);
 }
