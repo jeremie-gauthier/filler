@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:18:16 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/22 21:25:02 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/23 12:12:27 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "libft.h"
 
 #define WHITESPACES " \t\n\r\v\f"
+#define ERROR_PAWN 4294967295U
 #define PLAYER_CASE 0xFFFFFFFF
 #define EMPTY_CASE '.'
 #define COLD_CASE 0x0
@@ -44,6 +45,8 @@ typedef struct s_pawn
   // au pion situe en `coord`
   // Ce sera une position abosule de la filler->map->data
   t_coord coord;
+  t_coord best_spot;
+  t_bool tested;
   unsigned int score;
 } t_pawn;
 
@@ -98,7 +101,7 @@ int read_piece(char *line, t_filler *filler);
 
 // Should go static
 int test_piece(t_coord coord, t_filler *filler);
-int test_piece_moving_around(t_pawn target, t_filler *filler);
+int test_piece_moving_around(t_pawn *target, t_filler *filler);
 
 int play_piece(t_filler *filler);
 int heatmap(t_filler *filler);
@@ -114,7 +117,7 @@ void enqueue_procedure(t_coord coord, t_queue *queue, t_filler *filler);
 **  pawns
 */
 void pawns_counting(t_filler *filler);
-size_t find_pawn_with_min_dist(t_pawn *pawns, size_t len, unsigned int ignore_le);
+size_t find_pawn_with_min_dist(t_pawn *pawns, size_t len, unsigned int ignore_lt);
 int is_player_pawn(const char pawn, const char player_pawn);
 
 /*
