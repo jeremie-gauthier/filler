@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:18:16 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/29 09:18:55 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/29 09:49:23 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "libft.h"
 
 #define WHITESPACES " \t\n\r\v\f"
+#define UL_MAX 0xFFFFFFFFFFFFFFFF
 #define ERROR_PAWN 0xFFFFFFFF
 #define PLAYER_CASE 0xFFFFFFFF
 #define NO_PLAYER_CASE 0xFFFFFFFE
@@ -47,8 +48,10 @@ typedef struct s_pawn
   // Ce sera une position abosule de la filler->map->data
   t_coord coord;
   t_coord best_spot;
+  t_coord tried_spot;
   t_bool tested;
   size_t score;
+  t_bool placeable;
 } t_pawn;
 
 typedef struct s_player
@@ -101,8 +104,8 @@ int read_map(char *line, t_filler *filler);
 int read_piece(char *line, t_filler *filler);
 
 // Should go static
-int test_piece(t_coord coord, t_filler *filler);
-int test_piece_moving_around(t_pawn *target, t_filler *filler);
+int test_piece(t_coord coord, t_filler *filler, size_t *score);
+void test_piece_moving_around(t_pawn *target, t_filler *filler);
 
 int play_piece(t_filler *filler);
 int heatmap(t_filler *filler);

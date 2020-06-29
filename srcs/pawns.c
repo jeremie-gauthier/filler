@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 12:51:20 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/28 18:52:17 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/29 09:48:44 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static int pawns_add(t_filler *filler, t_coord coord, size_t idx)
   ft_bzero((void *)&pawn, sizeof(t_pawn));
   pawn.coord = coord;
   pawn.coord.dist = find_min_dist(filler, coord);
+  pawn.score = UL_MAX;
+  pawn.placeable = false;
   if (pawn.coord.dist < PLAYER_CASE)
   {
     filler->me->pawns[idx] = pawn;
