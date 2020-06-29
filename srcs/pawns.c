@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 12:51:20 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/23 18:07:40 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/28 18:52:17 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ static unsigned int find_min_dist(t_filler *filler, t_coord coord)
 
   heatmap = filler->map->heatmap;
   min = PLAYER_CASE;
-  if (coord.y - 1 > 0 && heatmap[coord.y - 1][coord.x] < min)
+  if (coord.y - 1 >= 0 && heatmap[coord.y - 1][coord.x] < min)
     min = heatmap[coord.y - 1][coord.x];
   if (coord.x + 1 < filler->map->width && heatmap[coord.y][coord.x + 1] < min)
     min = heatmap[coord.y][coord.x + 1];
   if (coord.y + 1 < filler->map->height && heatmap[coord.y + 1][coord.x] < min)
     min = heatmap[coord.y + 1][coord.x];
-  if (coord.x - 1 > 0 && heatmap[coord.y][coord.x - 1] < min)
+  if (coord.x - 1 >= 0 && heatmap[coord.y][coord.x - 1] < min)
     min = heatmap[coord.y][coord.x - 1];
   return min;
 }

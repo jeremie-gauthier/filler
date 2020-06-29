@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:18:16 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/23 18:07:15 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/29 09:09:28 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 #include "libft.h"
 
 #define WHITESPACES " \t\n\r\v\f"
-#define ERROR_PAWN 4294967295U
+#define ERROR_PAWN 0xFFFFFFFF
 #define PLAYER_CASE 0xFFFFFFFF
+#define NO_PLAYER_CASE 0xFFFFFFFE
 #define EMPTY_CASE '.'
 #define COLD_CASE 0x0
 #define INITIAL_DISTANCE 0
@@ -139,6 +140,6 @@ int filler_init(t_filler *filler);
 int pawns_init(t_pawn **pawns, size_t size);
 int data_init(char ***data, size_t size);
 int queue_init(t_queue *queue, size_t size);
-int heatmap_init(unsigned int ***heatmap, size_t height, size_t width);
+int heatmap_init(unsigned int ***heatmap, int height, int width);
 
 #endif

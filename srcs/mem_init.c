@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 13:10:21 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/22 12:02:24 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/29 09:10:52 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int pawns_init(t_pawn **pawns, size_t size)
   return (0);
 }
 
-int heatmap_init(unsigned int ***heatmap, size_t height, size_t width)
+int heatmap_init(unsigned int ***heatmap, int height, int width)
 {
-  size_t h;
+  int h;
 
   h = 0;
   if (!(*heatmap = (unsigned int **)ft_memalloc(height * sizeof(unsigned int *))))
