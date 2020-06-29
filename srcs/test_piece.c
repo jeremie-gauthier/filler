@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 18:21:42 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/23 16:38:26 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/29 09:21:45 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int test_piece(t_coord coord, t_filler *filler)
   // ft_dprintf(2, "TEST: [%i, %i]\n", coord.y, coord.x);
   overlapping = 0;
   h = 0;
-  while ((h + filler->piece->offset_height) < (filler->piece->offset_height + filler->piece->true_height))
+  while ((h + filler->piece->offset_height) < (filler->piece->offset_height + filler->piece->true_height) && overlapping <= 1)
   {
     w = 0;
     while ((w + filler->piece->offset_width) < (filler->piece->offset_width + filler->piece->true_width))
