@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 12:19:22 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/23 16:25:52 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/29 11:08:41 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static int read_piece_body(t_piece *piece)
   line = NULL;
   while (i < piece->height && get_next_line(0, &line) > 0)
   {
-    ft_dprintf(2, "++ %s WITH LEN = %lu AT %i\n", line, ft_strlen(line), i);
     if (!(piece->data[i] = line))
     {
       ft_tabdel((void **)piece->data, i);
@@ -88,17 +87,11 @@ int read_piece(char *line, t_filler *filler)
 {
   if (read_piece_header(line, filler->piece) < 0)
     return (-1);
-  ft_dprintf(2, ":: width => %lu || height => %lu ::\n",
-             filler->piece->width, filler->piece->height);
   if (data_init(&filler->piece->data, filler->piece->height) < 0)
     return (-1);
   if (read_piece_body(filler->piece) < 0)
     return (-1);
   set_offset(filler->piece);
-  ft_dprintf(2, "OFF Height: %i\nOFF Width: %i\n",
-             filler->piece->offset_height, filler->piece->offset_width);
   set_true_dims(filler->piece);
-  ft_dprintf(2, "TRUE Height: %i\nTRUE Width: %i\n",
-             filler->piece->true_height, filler->piece->true_width);
   return (0);
 }

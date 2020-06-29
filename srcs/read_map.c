@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 12:17:50 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/20 21:08:54 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/29 11:08:17 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static int read_map_body(t_filler *filler)
   ft_bzero(&data, sizeof(t_split));
   while (i < filler->map->height && get_next_line(0, &data.str) > 0)
   {
-    ft_dprintf(2, "++ %s WITH LEN = %lu AT %i\n", data.str, data.len, i);
     if (!(data.array = ft_strsplit(data.str, WHITESPACES, &data.len)))
     {
       ft_tabdel((void **)filler->map->data, i);
@@ -63,8 +62,6 @@ int read_map(char *line, t_filler *filler)
 {
   if (read_map_header(line, filler) < 0)
     return (-1);
-  ft_dprintf(2, ":: width => %lu || height => %lu ::\n",
-             filler->map->width, filler->map->height);
   if (data_init(&filler->map->data, filler->map->height) < 0)
     return (-1);
   if (read_map_body(filler) < 0)

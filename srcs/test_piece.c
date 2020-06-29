@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 18:21:42 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/29 10:30:30 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/29 11:08:57 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int test_piece(t_coord coord, t_filler *filler, size_t *score)
     w = 0;
     while ((w + filler->piece->offset_width) < (filler->piece->offset_width + filler->piece->true_width))
     {
-      // ft_dprintf(2, "TEST: [%i, %i]\n", coord.y + h, coord.x + w);
       if (is_player_pawn(filler->map->data[coord.y + h][coord.x + w],
                          filler->opponent->shape))
         return (0);
@@ -69,22 +68,18 @@ void test_piece_moving_around(t_pawn *target, t_filler *filler)
   t_coord coord;
   size_t score;
 
-  // ft_dprintf(2, "TARGET: [%i, %i]\n", target->coord.y, target->coord.x);
   coord.y = 1;
   while (coord.y <= filler->piece->true_height)
   {
-    // ft_dprintf(2, "Is it to high ? %i < %i\n", (target->coord.y + filler->piece->true_height - coord.y), filler->map->height);
     if ((target->coord.y + filler->piece->true_height - coord.y) < filler->map->height &&
         (target->coord.y - coord.y + 1) >= 0)
     {
-      // ft_dprintf(2, "PASS 1st condition\n");
       coord.x = 1;
       while (coord.x <= filler->piece->true_width)
       {
         if ((target->coord.x + filler->piece->true_width - coord.x) < filler->map->width &&
             (target->coord.x - coord.x + 1) >= 0)
         {
-          // ft_dprintf(2, "PASS 2nd condition\n");
           score = 0;
           target->tried_spot.x = target->coord.x - coord.x + 1;
           target->tried_spot.y = target->coord.y - coord.y + 1;
@@ -93,7 +88,6 @@ void test_piece_moving_around(t_pawn *target, t_filler *filler)
             target->score = score;
             target->best_spot = target->tried_spot;
             target->placeable = true;
-            ft_dprintf(2, "{green}FOUND A PLACE @ [%i, %i] (%lu){reset}\n", target->best_spot.y, target->best_spot.x, target->score);
           }
         }
         coord.x++;

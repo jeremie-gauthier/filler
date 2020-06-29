@@ -6,36 +6,11 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 15:12:59 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/29 09:07:00 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/29 11:11:45 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-
-// DEBUG
-void print_heatmap(t_filler *filler)
-{
-  int h, w;
-
-  h = 0;
-  while (h < filler->map->height)
-  {
-    w = 0;
-    while (w < filler->map->width)
-    {
-      if (filler->map->heatmap[h][w] == PLAYER_CASE)
-        ft_dprintf(2, "{green}%2u{reset} ", 0);
-      else if (filler->map->heatmap[h][w] == NO_PLAYER_CASE)
-        ft_dprintf(2, "{yellow} .{reset} ");
-      else
-        ft_dprintf(2, "%2u ", filler->map->heatmap[h][w]);
-      w++;
-    }
-    ft_dprintf(2, "\n");
-    h++;
-  }
-  ft_dprintf(2, "\n\n");
-}
 
 static void enqueu_if_opponent_case(t_queue *queue, t_filler *filler,
                                     t_coord coord)
@@ -111,7 +86,6 @@ int heatmap(t_filler *filler)
   }
   heatmap_spread(filler, &queue);
   heatmap_unreachable_cases(filler);
-  print_heatmap(filler);
   queue_clear(&queue);
   return (0);
 }

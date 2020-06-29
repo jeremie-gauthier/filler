@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:12:32 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/20 17:23:18 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/29 11:07:00 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static int read_core(t_filler *filler)
 
   while (get_next_line(0, &line) > 0)
   {
-    ft_dprintf(2, ":: %s\n", line);
     if (ft_strncmp(line, "Plateau", 7) == 0)
     {
       if (read_map(line, filler) < 0)

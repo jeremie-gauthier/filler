@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 13:07:51 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/22 12:09:52 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/29 11:13:01 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void filler_clear(t_filler *filler)
   piece_clear(filler->piece);
   if (filler->piece)
     ft_memdel((void **)&filler->piece);
-  // player_clear(filler->me);
+  player_clear(filler->me);
   if (filler->me)
     ft_memdel((void **)&filler->me);
-  // player_clear(filler->opponent);
+  player_clear(filler->opponent);
   if (filler->opponent)
     ft_memdel((void **)&filler->opponent);
 }
