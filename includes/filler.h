@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:18:16 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/29 09:09:28 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/06/29 09:18:55 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_pawn
   t_coord coord;
   t_coord best_spot;
   t_bool tested;
-  unsigned int score;
+  size_t score;
 } t_pawn;
 
 typedef struct s_player
