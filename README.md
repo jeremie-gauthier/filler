@@ -16,3 +16,10 @@ La partie s’arrête à la première erreur : dès qu’une pièce ne peut plus
 ou a été mal posée.
 
 Le score le plus élevé remporte la partie.
+
+## Web version
+
+<a href="https://www.loom.com/share/f01bc17e124c4e92a8e0d8433da17f7c">
+  <p>Demo - Watch Video</p>
+  <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/f01bc17e124c4e92a8e0d8433da17f7c-with-play.gif" />
+</a>
