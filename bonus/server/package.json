@@ -1,0 +1,17 @@
+{
+	"name": "server",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon index.js"
+	},
+	"author": "jergauth",
+	"license": "MIT",
+	"dependencies": {
+		"websocket": "^1.0.31"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.4"
+	}
+}

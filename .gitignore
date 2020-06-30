@@ -54,3 +54,4 @@ dkms.conf
 jergauth.filler
 filler.trace
 .vscode
+node_modules
