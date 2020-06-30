@@ -103,12 +103,7 @@ function App() {
 
 	const [connection, setConnection] = useState(null);
 	useEffect(() => {
-		let wsConn;
-		try {
-			wsConn = new W3CWebSocket("ws://127.0.0.1:8000");
-		} catch (err) {
-			wsConn = new W3CWebSocket("ws://86.247.50.28:8000");
-		}
+		const wsConn = new W3CWebSocket("ws://86.247.50.28:8000");
 		setConnection(wsConn);
 
 		return () => {
