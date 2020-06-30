@@ -29,7 +29,9 @@ const connectClient = (request) => {
 };
 
 function originIsAllowed(origin) {
-	return origin === "http://localhost:3000";
+	return (
+		origin === "http://localhost:3000" || origin === "http://86.247.50.28/"
+	);
 }
 module.exports = {
 	wsRequest: (request) => {
