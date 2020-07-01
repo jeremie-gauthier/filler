@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:18:16 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/01 17:59:04 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/01 18:11:36 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 #define WHITESPACES " \t\n\r\v\f"
 #define UL_MAX 0xFFFFFFFFFFFFFFFF
-#define ERROR_PAWN 0xFFFFFFFF
 #define PLAYER_CASE 0xFFFFFFFF
 #define NO_PLAYER_CASE 0xFFFFFFFE
 #define EMPTY_CASE '.'
@@ -41,11 +40,6 @@ typedef struct s_map
 
 typedef struct s_pawn
 {
-  // Si je veux tirer profit du `score`,
-  // il faut ajouter une autre struct coord
-  // correspondant au placement de la piece par rapport
-  // au pion situe en `coord`
-  // Ce sera une position abosule de la filler->map->data
   t_coord coord;
   t_coord best_spot;
   t_coord tried_spot;
@@ -58,8 +52,6 @@ typedef struct s_player
 {
   t_pawn *pawns;
   size_t len_pawns;
-  t_coord *last_move; //useless ?
-  size_t len;         //useless ?
   char shape;
 } t_player;
 
@@ -111,6 +103,7 @@ int play_piece(t_filler *filler);
 /*
 **  queue
 */
+
 int is_in_queue(const t_coord coord, t_queue *queue);
 int is_empty_case(t_filler *filler, const t_coord coord);
 void enqueue_procedure(t_coord coord, t_queue *queue, t_filler *filler);
@@ -118,6 +111,7 @@ void enqueue_procedure(t_coord coord, t_queue *queue, t_filler *filler);
 /*
 **  pawns
 */
+
 void pawns_counting(t_filler *filler);
 int is_player_pawn(const char pawn, const char player_pawn);
 void pawns_sorting(t_pawn *pawns, const size_t len);
