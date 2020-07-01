@@ -6,7 +6,7 @@
 #    By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/13 20:07:20 by jergauth          #+#    #+#              #
-#    Updated: 2020/07/01 16:34:15 by jergauth         ###   ########.fr        #
+#    Updated: 2020/07/01 17:19:49 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS=	mem_clear.c\
 			mem_init.c\
 			enqueue_helper.c\
 			enqueue.c\
+			helpers.c\
 			heatmap.c\
 			main.c\
 			read_map.c\

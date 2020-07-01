@@ -6,90 +6,94 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 18:21:42 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/29 11:08:57 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:20:52 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int is_empty_row(const char *row)
+static int test_overlapping(t_filler *filler, t_coord coord, t_coord dim)
 {
-  return ft_strchr(row, '*') == NULL;
+  if (is_player_pawn(filler->map->data[coord.y + dim.y][coord.x + dim.x],
+                     filler->me->shape) &&
+      filler->piece->data[dim.y + filler->piece->offset_height]
+                         [dim.x + filler->piece->offset_width] == '*')
+  {
+    return (1);
+  }
+  return (0);
 }
 
-int is_empty_col(char **array, size_t idx_col)
+static int test_score(t_filler *filler, t_coord coord, t_coord dim)
 {
-  size_t row;
-
-  row = 0;
-  while (array[row])
-  {
-    if (array[row][idx_col] == '*')
-      return (0);
-    row++;
-  }
-  return (1);
+  if (filler->map->data[coord.y + dim.y][coord.x + dim.x] == '.' &&
+      filler->piece->data[dim.y + filler->piece->offset_height]
+                         [dim.x + filler->piece->offset_width] == '*')
+    return filler->map->heatmap[coord.y + dim.y]
+                               [coord.x + dim.x];
+  return (0);
 }
 
 int test_piece(t_coord coord, t_filler *filler, size_t *score)
 {
-  int h;
-  int w;
+  t_coord dim;
   int overlapping;
 
   overlapping = 0;
-  h = 0;
-  while ((h + filler->piece->offset_height) < (filler->piece->offset_height + filler->piece->true_height))
+  dim.y = 0;
+  while ((dim.y + filler->piece->offset_height) <
+         (filler->piece->offset_height + filler->piece->true_height))
   {
-    w = 0;
-    while ((w + filler->piece->offset_width) < (filler->piece->offset_width + filler->piece->true_width))
+    dim.x = 0;
+    while ((dim.x + filler->piece->offset_width) <
+           (filler->piece->offset_width + filler->piece->true_width))
     {
-      if (is_player_pawn(filler->map->data[coord.y + h][coord.x + w],
+      if (is_player_pawn(filler->map->data[coord.y + dim.y][coord.x + dim.x],
                          filler->opponent->shape))
         return (0);
-      if (is_player_pawn(filler->map->data[coord.y + h][coord.x + w],
-                         filler->me->shape) &&
-          filler->piece->data[h + filler->piece->offset_height]
-                             [w + filler->piece->offset_width] == '*')
-        overlapping++;
-      else if (filler->map->data[coord.y + h][coord.x + w] == '.' && filler->piece->data[h + filler->piece->offset_height]
-                                                                                        [w + filler->piece->offset_width] == '*')
-        (*score) += filler->map->heatmap[coord.y + h]
-                                        [coord.x + w];
-      w++;
+      overlapping += test_overlapping(filler, coord, dim);
+      *score += test_score(filler, coord, dim);
+      dim.x++;
     }
-    h++;
+    dim.y++;
   }
   return (overlapping == 1);
+}
+
+static void start_test_sequence(t_pawn *target, t_coord coord, t_filler *filler)
+{
+  size_t score;
+
+  score = 0;
+  target->tried_spot.x = target->coord.x - coord.x + 1;
+  target->tried_spot.y = target->coord.y - coord.y + 1;
+  if (test_piece(target->tried_spot, filler, &score) == 1 &&
+      score < target->score)
+  {
+    target->score = score;
+    target->best_spot = target->tried_spot;
+    target->placeable = true;
+  }
 }
 
 void test_piece_moving_around(t_pawn *target, t_filler *filler)
 {
   t_coord coord;
-  size_t score;
 
   coord.y = 1;
   while (coord.y <= filler->piece->true_height)
   {
-    if ((target->coord.y + filler->piece->true_height - coord.y) < filler->map->height &&
+    if ((target->coord.y + filler->piece->true_height - coord.y) <
+            filler->map->height &&
         (target->coord.y - coord.y + 1) >= 0)
     {
       coord.x = 1;
       while (coord.x <= filler->piece->true_width)
       {
-        if ((target->coord.x + filler->piece->true_width - coord.x) < filler->map->width &&
+        if ((target->coord.x + filler->piece->true_width - coord.x) <
+                filler->map->width &&
             (target->coord.x - coord.x + 1) >= 0)
-        {
-          score = 0;
-          target->tried_spot.x = target->coord.x - coord.x + 1;
-          target->tried_spot.y = target->coord.y - coord.y + 1;
-          if (test_piece(target->tried_spot, filler, &score) == 1 && score < target->score)
-          {
-            target->score = score;
-            target->best_spot = target->tried_spot;
-            target->placeable = true;
-          }
-        }
+          start_test_sequence(target, coord, filler);
         coord.x++;
       }
     }
