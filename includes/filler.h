@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:18:16 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/01 16:34:52 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:23:01 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,17 +100,13 @@ typedef struct s_queue
 **  core
 */
 
-int read_map(char *line, t_filler *filler);
-int read_piece(char *line, t_filler *filler);
-
-// Should go static
-int test_piece(t_coord coord, t_filler *filler, size_t *score);
-void test_piece_moving_around(t_pawn *target, t_filler *filler);
-
-int play_piece(t_filler *filler);
-int heatmap(t_filler *filler);
 int is_empty_row(const char *row);
 int is_empty_col(char **array, size_t idx_col);
+int read_map(char *line, t_filler *filler);
+int heatmap(t_filler *filler);
+int read_piece(char *line, t_filler *filler);
+void test_piece_moving_around(t_pawn *target, t_filler *filler);
+int play_piece(t_filler *filler);
 
 /*
 **  queue

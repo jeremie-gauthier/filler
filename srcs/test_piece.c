@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 18:21:42 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/01 17:20:52 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:22:32 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int test_score(t_filler *filler, t_coord coord, t_coord dim)
   return (0);
 }
 
-int test_piece(t_coord coord, t_filler *filler, size_t *score)
+static int test_piece(t_coord coord, t_filler *filler, size_t *score)
 {
   t_coord dim;
   int overlapping;
