@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:18:16 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/01 17:42:03 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:59:04 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ typedef struct s_queue
 
 int is_empty_row(const char *row);
 int is_empty_col(const char **array, const size_t idx_col);
-int read_map(char *line, t_filler *filler);
+int read_map(const char *line, t_filler *filler);
 int heatmap(t_filler *filler);
 int read_piece(const char *line, t_filler *filler);
 void test_piece_moving_around(t_pawn *target, t_filler *filler);
@@ -120,7 +120,7 @@ void enqueue_procedure(t_coord coord, t_queue *queue, t_filler *filler);
 */
 void pawns_counting(t_filler *filler);
 int is_player_pawn(const char pawn, const char player_pawn);
-void pawns_sorting(t_pawn *pawns, size_t len);
+void pawns_sorting(t_pawn *pawns, const size_t len);
 
 /*
 **  mem_clear
@@ -138,9 +138,9 @@ void queue_clear(t_queue *queue);
 */
 
 int filler_init(t_filler *filler);
-int pawns_init(t_pawn **pawns, size_t size);
-int data_init(char ***data, int size);
-int queue_init(t_queue *queue, size_t size);
-int heatmap_init(unsigned int ***heatmap, int height, int width);
+int pawns_init(t_pawn **pawns, const size_t size);
+int data_init(char ***data, const int size);
+int queue_init(t_queue *queue, const size_t size);
+int heatmap_init(unsigned int ***heatmap, const int height, const int width);
 
 #endif

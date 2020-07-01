@@ -6,13 +6,13 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 13:10:21 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/01 17:42:21 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:56:49 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int data_init(char ***data, int size)
+int data_init(char ***data, const int size)
 {
   if (size <= 0)
     return (-1);
@@ -21,7 +21,7 @@ int data_init(char ***data, int size)
   return (0);
 }
 
-int pawns_init(t_pawn **pawns, size_t size)
+int pawns_init(t_pawn **pawns, const size_t size)
 {
   if (size <= 0)
     return (-1);
@@ -33,7 +33,7 @@ int pawns_init(t_pawn **pawns, size_t size)
   return (0);
 }
 
-int heatmap_init(unsigned int ***heatmap, int height, int width)
+int heatmap_init(unsigned int ***heatmap, const int height, const int width)
 {
   int h;
 
@@ -54,7 +54,7 @@ int heatmap_init(unsigned int ***heatmap, int height, int width)
   return (0);
 }
 
-int queue_init(t_queue *queue, size_t size)
+int queue_init(t_queue *queue, const size_t size)
 {
   if (size <= 0)
     return (-1);

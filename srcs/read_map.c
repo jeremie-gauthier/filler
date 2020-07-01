@@ -6,13 +6,13 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 12:17:50 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/01 17:02:41 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:52:59 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static int read_map_header(char *line, t_filler *filler)
+static int read_map_header(const char *line, t_filler *filler)
 {
   t_split data;
 
@@ -25,7 +25,7 @@ static int read_map_header(char *line, t_filler *filler)
   return (0);
 }
 
-static int clear_failure(char **map_data, int idx, t_split *split_data)
+static int clear_failure(char **map_data, const int idx, t_split *split_data)
 {
   ft_tabdel((void **)map_data, idx);
   split_clear(split_data);
@@ -57,7 +57,7 @@ static int read_map_body(t_filler *filler)
   return (0);
 }
 
-int read_map(char *line, t_filler *filler)
+int read_map(const char *line, t_filler *filler)
 {
   if (read_map_header(line, filler) < 0)
     return (-1);

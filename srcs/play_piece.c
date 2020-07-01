@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 12:20:03 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/29 11:12:10 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/01 18:04:42 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void pawns_iter_coords(t_filler *filler)
   }
 }
 
-static t_pawn *pawns_select_best(t_pawn *pawns, size_t len)
+static t_pawn *pawns_select_best(t_pawn *pawns, const size_t len)
 {
   size_t i;
   t_pawn *best;

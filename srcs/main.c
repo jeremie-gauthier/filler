@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:12:32 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/01 16:52:26 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/01 18:05:35 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int read_metadata(t_filler *filler)
   return (0);
 }
 
-static int map_sequence(t_filler *filler, char *line)
+static int map_sequence(t_filler *filler, const char *line)
 {
   if (ft_strncmp(line, "Plateau", 7) == 0)
   {
@@ -48,7 +48,7 @@ static int map_sequence(t_filler *filler, char *line)
   return (0);
 }
 
-static int piece_sequence(t_filler *filler, char *line)
+static int piece_sequence(t_filler *filler, const char *line)
 {
   if (read_piece(line, filler) < 0)
     return (-1);
@@ -65,14 +65,14 @@ static int read_core(t_filler *filler)
 
   while (get_next_line(0, &line) > 0)
   {
-    if (map_sequence(filler, line) < 0)
+    if (map_sequence(filler, (const char *)line) < 0)
     {
       ft_strdel(&line);
       return (-1);
     }
     else if (ft_strncmp(line, "Piece", 5) == 0)
     {
-      if (piece_sequence(filler, line) < 0)
+      if (piece_sequence(filler, (const char *)line) < 0)
       {
         ft_strdel(&line);
         return (-1);

@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 12:51:20 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/29 09:48:44 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/01 18:05:12 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int is_player_pawn(const char pawn, const char player_pawn)
   return (pawn == player_pawn || pawn == (player_pawn + 32));
 }
 
-static unsigned int find_min_dist(t_filler *filler, t_coord coord)
+static unsigned int find_min_dist(t_filler *filler, const t_coord coord)
 {
   unsigned int min;
   unsigned int **heatmap;
@@ -35,7 +35,7 @@ static unsigned int find_min_dist(t_filler *filler, t_coord coord)
   return min;
 }
 
-static int pawns_add(t_filler *filler, t_coord coord, size_t idx)
+static int pawns_add(t_filler *filler, const t_coord coord, const size_t idx)
 {
   t_pawn pawn;
 
@@ -74,7 +74,7 @@ void pawns_counting(t_filler *filler)
   filler->me->len_pawns = idx;
 }
 
-void pawns_sorting(t_pawn *pawns, size_t len)
+void pawns_sorting(t_pawn *pawns, const size_t len)
 {
   size_t i;
   size_t j;
