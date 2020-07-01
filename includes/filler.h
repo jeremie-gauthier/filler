@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:18:16 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/29 09:49:23 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/01 16:34:52 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ int is_empty_col(char **array, size_t idx_col);
 /*
 **  queue
 */
+int is_in_queue(t_coord coord, t_queue *queue);
+int is_empty_case(t_filler *filler, t_coord coord);
 void enqueue_procedure(t_coord coord, t_queue *queue, t_filler *filler);
 
 /*
