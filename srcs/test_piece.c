@@ -6,13 +6,14 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 18:21:42 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/01 17:22:32 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:29:25 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static int test_overlapping(t_filler *filler, t_coord coord, t_coord dim)
+static int test_overlapping(t_filler *filler, const t_coord coord,
+                            const t_coord dim)
 {
   if (is_player_pawn(filler->map->data[coord.y + dim.y][coord.x + dim.x],
                      filler->me->shape) &&
@@ -24,7 +25,7 @@ static int test_overlapping(t_filler *filler, t_coord coord, t_coord dim)
   return (0);
 }
 
-static int test_score(t_filler *filler, t_coord coord, t_coord dim)
+static int test_score(t_filler *filler, const t_coord coord, const t_coord dim)
 {
   if (filler->map->data[coord.y + dim.y][coord.x + dim.x] == '.' &&
       filler->piece->data[dim.y + filler->piece->offset_height]
@@ -34,7 +35,7 @@ static int test_score(t_filler *filler, t_coord coord, t_coord dim)
   return (0);
 }
 
-static int test_piece(t_coord coord, t_filler *filler, size_t *score)
+static int test_piece(const t_coord coord, t_filler *filler, size_t *score)
 {
   t_coord dim;
   int overlapping;
@@ -60,7 +61,8 @@ static int test_piece(t_coord coord, t_filler *filler, size_t *score)
   return (overlapping == 1);
 }
 
-static void start_test_sequence(t_pawn *target, t_coord coord, t_filler *filler)
+static void start_test_sequence(t_pawn *target, const t_coord coord,
+                                t_filler *filler)
 {
   size_t score;
 

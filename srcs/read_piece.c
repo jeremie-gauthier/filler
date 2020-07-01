@@ -6,13 +6,13 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 12:19:22 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/29 11:08:41 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:32:25 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static int read_piece_header(char *line, t_piece *piece)
+static int read_piece_header(const char *line, t_piece *piece)
 {
   t_split data;
 
@@ -78,12 +78,12 @@ static void set_true_dims(t_piece *piece)
   piece->true_height = idx;
   idx = 0;
   while ((idx + piece->offset_width) < piece->width &&
-         !is_empty_col(piece->data, idx + piece->offset_width))
+         !is_empty_col((const char **)piece->data, idx + piece->offset_width))
     idx++;
   piece->true_width = idx;
 }
 
-int read_piece(char *line, t_filler *filler)
+int read_piece(const char *line, t_filler *filler)
 {
   if (read_piece_header(line, filler->piece) < 0)
     return (-1);
