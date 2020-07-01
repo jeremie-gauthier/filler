@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 15:12:59 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/01 17:24:01 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/01 18:10:51 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void heatmap_unreachable_cases(t_filler *filler)
     w = 0;
     while (w < filler->map->width)
     {
-      if (filler->map->heatmap[h][w] == 0)
+      if (filler->map->heatmap[h][w] == COLD_CASE)
         filler->map->heatmap[h][w] = NO_PLAYER_CASE;
       w++;
     }
