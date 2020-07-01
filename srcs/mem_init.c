@@ -6,14 +6,16 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 13:10:21 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/29 09:10:52 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:42:21 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int data_init(char ***data, size_t size)
+int data_init(char ***data, int size)
 {
+  if (size <= 0)
+    return (-1);
   if (!(*data = (char **)ft_memalloc((size + 1) * sizeof(char *))))
     return (-1);
   return (0);
@@ -21,6 +23,8 @@ int data_init(char ***data, size_t size)
 
 int pawns_init(t_pawn **pawns, size_t size)
 {
+  if (size <= 0)
+    return (-1);
   if (*pawns == NULL)
   {
     if (!(*pawns = (t_pawn *)ft_memalloc(size * sizeof(t_pawn))))
@@ -33,6 +37,8 @@ int heatmap_init(unsigned int ***heatmap, int height, int width)
 {
   int h;
 
+  if (height <= 0 || width <= 0)
+    return (-1);
   h = 0;
   if (!(*heatmap = (unsigned int **)ft_memalloc(height * sizeof(unsigned int *))))
     return (-1);
@@ -50,6 +56,8 @@ int heatmap_init(unsigned int ***heatmap, int height, int width)
 
 int queue_init(t_queue *queue, size_t size)
 {
+  if (size <= 0)
+    return (-1);
   if (!(queue->data = (t_coord *)ft_memalloc(size * sizeof(t_coord))))
     return (-1);
   queue->front = 0;

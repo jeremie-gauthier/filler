@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:18:16 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/01 17:31:13 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:42:03 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void queue_clear(t_queue *queue);
 
 int filler_init(t_filler *filler);
 int pawns_init(t_pawn **pawns, size_t size);
-int data_init(char ***data, size_t size);
+int data_init(char ***data, int size);
 int queue_init(t_queue *queue, size_t size);
 int heatmap_init(unsigned int ***heatmap, int height, int width);
 
