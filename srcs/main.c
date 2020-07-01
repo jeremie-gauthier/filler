@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:12:32 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/29 11:07:00 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/01 16:52:26 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,33 +38,41 @@ static int read_metadata(t_filler *filler)
   return (0);
 }
 
+static int map_sequence(t_filler *filler, char *line)
+{
+  if (ft_strncmp(line, "Plateau", 7) == 0)
+  {
+    if (read_map(line, filler) < 0)
+      return (-1);
+  }
+  return (0);
+}
+
+static int piece_sequence(t_filler *filler, char *line)
+{
+  if (read_piece(line, filler) < 0)
+    return (-1);
+  if (heatmap(filler) < 0)
+    return (-1);
+  if (play_piece(filler) < 0)
+    return (-1);
+  return (0);
+}
+
 static int read_core(t_filler *filler)
 {
   char *line;
 
   while (get_next_line(0, &line) > 0)
   {
-    if (ft_strncmp(line, "Plateau", 7) == 0)
+    if (map_sequence(filler, line) < 0)
     {
-      if (read_map(line, filler) < 0)
-      {
-        ft_strdel(&line);
-        return (-1);
-      }
+      ft_strdel(&line);
+      return (-1);
     }
     else if (ft_strncmp(line, "Piece", 5) == 0)
     {
-      if (read_piece(line, filler) < 0)
-      {
-        ft_strdel(&line);
-        return (-1);
-      }
-      if (heatmap(filler) < 0)
-      {
-        ft_strdel(&line);
-        return (-1);
-      }
-      if (play_piece(filler) < 0)
+      if (piece_sequence(filler, line) < 0)
       {
         ft_strdel(&line);
         return (-1);
