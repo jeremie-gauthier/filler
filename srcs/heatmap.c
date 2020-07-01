@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 15:12:59 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/29 11:11:45 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/01 16:57:13 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,11 @@ int heatmap(t_filler *filler)
     return (-1);
   if (heatmap_setup(filler, &queue) < 0)
   {
-    queue_clear(&queue);
+    ft_memdel((void **)&queue.data);
     return (-1);
   }
   heatmap_spread(filler, &queue);
   heatmap_unreachable_cases(filler);
-  queue_clear(&queue);
+  ft_memdel((void **)&queue.data);
   return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 13:07:51 by jergauth          #+#    #+#             */
-/*   Updated: 2020/06/29 11:13:01 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/01 16:57:04 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,6 @@ void player_clear(t_player *player)
 {
   ft_memdel((void **)&player->pawns);
   ft_tabdel((void **)player->last_move, player->len);
-}
-
-void queue_clear(t_queue *queue)
-{
-  ft_memdel((void **)&queue->data);
 }
 
 void filler_clear(t_filler *filler)
