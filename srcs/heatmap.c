@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 15:12:59 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/01 16:57:13 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:24:01 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int heatmap_setup(t_filler *filler, t_queue *queue)
   return (0);
 }
 
-void heatmap_spread(t_filler *filler, t_queue *queue)
+static void heatmap_spread(t_filler *filler, t_queue *queue)
 {
   while (queue->front < queue->rear)
   {
