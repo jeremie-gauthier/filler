@@ -117,6 +117,7 @@ function App() {
 			player1 !== "" &&
 			player2 !== ""
 		) {
+			wipe(ctx);
 			setGameState(true);
 			if (!connection.onmessage) {
 				connection.onmessage = ({ data }) => {
@@ -125,7 +126,6 @@ function App() {
 					if ("board" in msg) {
 						const [scorep1, scorep2] = arrcpy(msg.board);
 						setScores({ p1: scorep1, p2: scorep2 });
-						setGameState(false);
 					} else if ("msg" in msg && msg.msg === "EXIT") {
 						setGameState(false);
 					}
