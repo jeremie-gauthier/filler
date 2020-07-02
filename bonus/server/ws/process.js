@@ -15,6 +15,8 @@ const asyncStringified = async (data) => {
 	});
 };
 
+const FILLER_ROOT = `${__dirname}/../../..`;
+
 module.exports = {
 	startFiller: (connection, args) => {
 		END_GAME = false;
@@ -29,10 +31,10 @@ module.exports = {
 				"-p2",
 				`./champions/${args.p2}.filler`,
 			],
-			{ cwd: "/home/jergauth/Documents/ecole/algo/filler/ressources-linux" }
+			{ cwd: `${FILLER_ROOT}/ressources-linux` }
 		);
 		const helper = spawn("node", ["./helper_CToNode.js"], {
-			cwd: "/home/jergauth/Documents/ecole/algo/filler/bonus",
+			cwd: `${FILLER_ROOT}/bonus`,
 		});
 
 		filler.on(events.ERROR, async (err) => {
