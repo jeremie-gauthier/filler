@@ -14,10 +14,13 @@ const addClient = (userID, connection) => {
 	clients[userID] = connection;
 };
 
+function originIsAllowed(origin) {
+	return origin === "http://localhost:3000";
+}
+
 const connectClient = (request) => {
 	const userID = getUniqueID();
 
-	// You can rewrite this part of the code to accept only the requests from allowed origin
 	const connection = request.accept(null, request.origin);
 
 	addClient(userID, connection);
@@ -28,9 +31,6 @@ const connectClient = (request) => {
 	return [connection, userID];
 };
 
-function originIsAllowed(origin) {
-	return origin === "http://localhost:3000";
-}
 module.exports = {
 	wsRequest: (request) => {
 		if (!originIsAllowed(request.origin)) {
