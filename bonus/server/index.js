@@ -8,8 +8,11 @@ const server = http.createServer(function (request, response) {
 	response.writeHead(404);
 	response.end();
 });
-server.listen(8000, function () {
-	console.log(new Date() + " Server is listening on port 8000");
+
+const PORT = 9000;
+
+server.listen(PORT, function () {
+	console.log(new Date() + " Server is listening on port " + PORT);
 });
 
 wsServer = new WebSocketServer({
