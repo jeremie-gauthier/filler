@@ -224,7 +224,7 @@ HEADER=	libft.h\
 		comparisons.h\
 		conversions.h\
 		lft_defines.h\
-		IO.h\
+		io.h\
 		linked_lists.h\
 		math.h\
 		mem.h\
