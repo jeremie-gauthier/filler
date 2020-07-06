@@ -6,135 +6,135 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:18:16 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/01 18:11:36 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/06 16:56:47 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLER_H
-#define FILLER_H
+# define FILLER_H
 
-#include "libft.h"
+# include "libft.h"
 
-#define WHITESPACES " \t\n\r\v\f"
-#define UL_MAX 0xFFFFFFFFFFFFFFFF
-#define PLAYER_CASE 0xFFFFFFFF
-#define NO_PLAYER_CASE 0xFFFFFFFE
-#define EMPTY_CASE '.'
-#define COLD_CASE 0x0
-#define INITIAL_DISTANCE 0
+# define WHITESPACES " \t\n\r\v\f"
+# define UL_MAX 0xFFFFFFFFFFFFFFFF
+# define PLAYER_CASE 0xFFFFFFFF
+# define NO_PLAYER_CASE 0xFFFFFFFE
+# define EMPTY_CASE '.'
+# define COLD_CASE 0x0
+# define INITIAL_DISTANCE 0
 
-typedef struct s_coord
+typedef struct	s_coord
 {
-  int x;
-  int y;
-  size_t dist;
-} t_coord;
+	int		x;
+	int		y;
+	size_t	dist;
+}				t_coord;
 
-typedef struct s_map
+typedef struct	s_map
 {
-  int width;
-  int height;
-  char **data;
-  unsigned int **heatmap;
-} t_map;
+	int				width;
+	int				height;
+	char			**data;
+	unsigned int	**heatmap;
+}				t_map;
 
-typedef struct s_pawn
+typedef struct	s_pawn
 {
-  t_coord coord;
-  t_coord best_spot;
-  t_coord tried_spot;
-  t_bool tested;
-  size_t score;
-  t_bool placeable;
-} t_pawn;
+	t_coord	coord;
+	t_coord	best_spot;
+	t_coord	tried_spot;
+	t_bool	tested;
+	size_t	score;
+	t_bool	placeable;
+}				t_pawn;
 
-typedef struct s_player
+typedef struct	s_player
 {
-  t_pawn *pawns;
-  size_t len_pawns;
-  char shape;
-} t_player;
+	t_pawn	*pawns;
+	size_t	len_pawns;
+	char	shape;
+}				t_player;
 
-typedef struct s_piece
+typedef struct	s_piece
 {
-  int width;
-  int height;
-  char **data;
-  int offset_width;
-  int offset_height;
-  int true_width;
-  int true_height;
-} t_piece;
+	int		width;
+	int		height;
+	char	**data;
+	int		offset_width;
+	int		offset_height;
+	int		true_width;
+	int		true_height;
+}				t_piece;
 
-typedef struct s_filler
+typedef struct	s_filler
 {
-  t_map *map;
-  t_piece *piece;
-  t_player *me;
-  t_player *opponent;
-} t_filler;
+	t_map		*map;
+	t_piece		*piece;
+	t_player	*me;
+	t_player	*opponent;
+}				t_filler;
 
-typedef struct s_split
+typedef struct	s_split
 {
-  char *str;
-  char **array;
-  size_t len;
-} t_split;
+	char	*str;
+	char	**array;
+	size_t	len;
+}				t_split;
 
-typedef struct s_queue
+typedef struct	s_queue
 {
-  t_coord *data;
-  size_t front;
-  size_t rear;
-} t_queue;
+	t_coord	*data;
+	size_t	front;
+	size_t	rear;
+}				t_queue;
 
 /*
 **  core
 */
 
-int is_empty_row(const char *row);
-int is_empty_col(const char **array, const size_t idx_col);
-int read_map(const char *line, t_filler *filler);
-int heatmap(t_filler *filler);
-int read_piece(const char *line, t_filler *filler);
-void test_piece_moving_around(t_pawn *target, t_filler *filler);
-int play_piece(t_filler *filler);
+int		is_empty_row(const char *row);
+int		is_empty_col(const char **array, const size_t idx_col);
+int		read_map(const char *line, t_filler *filler);
+int		heatmap(t_filler *filler);
+int		read_piece(const char *line, t_filler *filler);
+void	test_piece_moving_around(t_pawn *target, t_filler *filler);
+int		play_piece(t_filler *filler);
 
 /*
 **  queue
 */
 
-int is_in_queue(const t_coord coord, t_queue *queue);
-int is_empty_case(t_filler *filler, const t_coord coord);
-void enqueue_procedure(t_coord coord, t_queue *queue, t_filler *filler);
+int		is_in_queue(const t_coord coord, t_queue *queue);
+int		is_empty_case(t_filler *filler, const t_coord coord);
+void	enqueue_procedure(t_coord coord, t_queue *queue, t_filler *filler);
 
 /*
 **  pawns
 */
 
-void pawns_counting(t_filler *filler);
-int is_player_pawn(const char pawn, const char player_pawn);
-void pawns_sorting(t_pawn *pawns, const size_t len);
+void	pawns_counting(t_filler *filler);
+int		is_player_pawn(const char pawn, const char player_pawn);
+void	pawns_sorting(t_pawn *pawns, const size_t len);
 
 /*
 **  mem_clear
 */
 
-void filler_clear(t_filler *filler);
-void split_clear(t_split *split);
-void map_clear(t_map *map);
-void piece_clear(t_piece *piece);
-void player_clear(t_player *player);
-void queue_clear(t_queue *queue);
+void	filler_clear(t_filler *filler);
+void	split_clear(t_split *split);
+void	map_clear(t_map *map);
+void	piece_clear(t_piece *piece);
+void	player_clear(t_player *player);
+void	queue_clear(t_queue *queue);
 
 /*
 **  mem_init
 */
 
-int filler_init(t_filler *filler);
-int pawns_init(t_pawn **pawns, const size_t size);
-int data_init(char ***data, const int size);
-int queue_init(t_queue *queue, const size_t size);
-int heatmap_init(unsigned int ***heatmap, const int height, const int width);
+int		filler_init(t_filler *filler);
+int		pawns_init(t_pawn **pawns, const size_t size);
+int		data_init(char ***data, const int size);
+int		queue_init(t_queue *queue, const size_t size);
+int		heatmap_init(unsigned int ***heatmap, const int height, const int width);
 
 #endif
