@@ -6,7 +6,7 @@
 #    By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/13 20:07:20 by jergauth          #+#    #+#              #
-#    Updated: 2020/07/01 17:19:49 by jergauth         ###   ########.fr        #
+#    Updated: 2020/07/08 11:27:19 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ LIBFT_DIR= ./libft
 
 ## HEADERS
 HEADER_DIR=	includes/
-HEADER=	filler.h
+HEADER=	filler.h\
+		types.h
 
 HEADERS= $(addprefix $(HEADER_DIR), $(HEADER))
 

@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 20:18:16 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/06 16:56:47 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/08 11:26:51 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FILLER_H
 
 # include "libft.h"
+# include "types.h"
 
 # define WHITESPACES " \t\n\r\v\f"
 # define UL_MAX 0xFFFFFFFFFFFFFFFF
@@ -22,71 +23,6 @@
 # define EMPTY_CASE '.'
 # define COLD_CASE 0x0
 # define INITIAL_DISTANCE 0
-
-typedef struct	s_coord
-{
-	int		x;
-	int		y;
-	size_t	dist;
-}				t_coord;
-
-typedef struct	s_map
-{
-	int				width;
-	int				height;
-	char			**data;
-	unsigned int	**heatmap;
-}				t_map;
-
-typedef struct	s_pawn
-{
-	t_coord	coord;
-	t_coord	best_spot;
-	t_coord	tried_spot;
-	t_bool	tested;
-	size_t	score;
-	t_bool	placeable;
-}				t_pawn;
-
-typedef struct	s_player
-{
-	t_pawn	*pawns;
-	size_t	len_pawns;
-	char	shape;
-}				t_player;
-
-typedef struct	s_piece
-{
-	int		width;
-	int		height;
-	char	**data;
-	int		offset_width;
-	int		offset_height;
-	int		true_width;
-	int		true_height;
-}				t_piece;
-
-typedef struct	s_filler
-{
-	t_map		*map;
-	t_piece		*piece;
-	t_player	*me;
-	t_player	*opponent;
-}				t_filler;
-
-typedef struct	s_split
-{
-	char	*str;
-	char	**array;
-	size_t	len;
-}				t_split;
-
-typedef struct	s_queue
-{
-	t_coord	*data;
-	size_t	front;
-	size_t	rear;
-}				t_queue;
 
 /*
 **  core
@@ -135,6 +71,7 @@ int		filler_init(t_filler *filler);
 int		pawns_init(t_pawn **pawns, const size_t size);
 int		data_init(char ***data, const int size);
 int		queue_init(t_queue *queue, const size_t size);
-int		heatmap_init(unsigned int ***heatmap, const int height, const int width);
+int		heatmap_init(unsigned int ***heatmap, const int height,
+						const int width);
 
 #endif
