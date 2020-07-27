@@ -8,6 +8,7 @@ import {
 	Select,
 	Button,
 	LinearProgress,
+	Backdrop
 } from "@material-ui/core";
 import {
 	makeStyles,
@@ -140,10 +141,11 @@ function App() {
 	return (
 		<ThemeProvider theme={theme}>
 			<Container maxWidth="md">
-				<Typography color={"primary"} variant="h2">
+				<Backdrop open={gameState} transitionDuration={750} />
+				<Typography color={"primary"} variant="h2" style={{ fontWeight: "bold" }}>
 					Filler
 				</Typography>
-				<Typography color={"secondary"} variant="h6">
+				<Typography color={"secondary"} variant="h6" style={{ fontWeight: "bold" }}>
 					AIs fighting to gain the control of a board game
 				</Typography>
 				<Container className={classes.main} maxWidth="md">
