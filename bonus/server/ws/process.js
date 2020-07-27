@@ -1,4 +1,7 @@
+const os = require("os");
 const { spawn } = require("child_process");
+
+const RESOURCES_DIR = (os.platform() === "darwin") ? "resources" : "resources-linux";
 
 let END_GAME = true;
 
@@ -31,7 +34,7 @@ module.exports = {
 				"-p2",
 				`./champions/${args.p2}.filler`,
 			],
-			{ cwd: `${FILLER_ROOT}/ressources-linux` }
+			{ cwd: `${FILLER_ROOT}/${RESOURCES_DIR}` }
 		);
 		const helper = spawn("node", ["./helper_CToNode.js"], {
 			cwd: `${FILLER_ROOT}/bonus`,
