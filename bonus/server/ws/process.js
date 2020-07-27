@@ -30,9 +30,9 @@ module.exports = {
 				"-f",
 				"./maps/map01",
 				"-p1",
-				`./champions/${args.p1}.filler`,
+				(args.p1 === "jergauth" ? '../' : './players/') + `${args.p1}.filler`,
 				"-p2",
-				`./champions/${args.p2}.filler`,
+				(args.p2 === "jergauth" ? '../' : './players/') + `${args.p2}.filler`,
 			],
 			{ cwd: `${FILLER_ROOT}/${RESOURCES_DIR}` }
 		);
